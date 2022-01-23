@@ -1,4 +1,6 @@
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -64,7 +66,13 @@ namespace WebApi.AddControllers{
             try
             {
                 command.Model=newBook;
+                
+                //validation 
+                CreateBookCommandValidator validator = new CreateBookCommandValidator();
+                validator.ValidateAndThrow(command);
+                
                 command.Handle();
+
             }
             catch(Exception ex)
             {
@@ -119,6 +127,11 @@ namespace WebApi.AddControllers{
            {
                 DeleteBookCommand command = new DeleteBookCommand(_context);
                 command.BookId=id;
+                
+                //validation
+                DeleteBookValidator validator = new DeleteBookValidator();
+                validator.ValidateAndThrow(command);
+
                 command.Handle();
            }
            catch (Exception ex)
