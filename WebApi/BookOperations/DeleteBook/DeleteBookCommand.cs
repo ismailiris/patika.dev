@@ -2,7 +2,8 @@ using System;
 using System.Linq;
 using WebApi.DBOperations;
 
-namespace WebApi.BookOperations.DeleteBook{
+namespace WebApi.BookOperations.DeleteBook
+{
     public class DeleteBookCommand
     {
         public int BookId { get; set; }
@@ -15,7 +16,7 @@ namespace WebApi.BookOperations.DeleteBook{
 
         public void Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x=>x.ID == BookId);
+            var book = _dbContext.Books.SingleOrDefault(x => x.ID == BookId);
 
             if (book is null)
                 throw new InvalidOperationException("Kitap mevcut değil.");

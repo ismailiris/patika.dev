@@ -1,6 +1,8 @@
-namespace WebApi.Common{
+namespace WebApi.Common
+{
 
-    public enum GenreEnum{
+    public enum GenreEnum
+    {
         PersonalGrowth,
         ScienceFiction,
         Noval,

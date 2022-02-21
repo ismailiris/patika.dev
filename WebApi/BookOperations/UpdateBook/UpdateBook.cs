@@ -2,13 +2,15 @@ using System;
 using System.Linq;
 using WebApi.DBOperations;
 
-namespace WebApi.BookOperations.UpdateBook{
-    public class UpdateBookCommand{
+namespace WebApi.BookOperations.UpdateBook
+{
+    public class UpdateBookCommand
+    {
 
-        public UpdateBookModel Model{get;set;}
+        public UpdateBookModel Model { get; set; }
         private readonly BookStoreDbContext _dbContext;
 
-        public int BookId {get;set;}
+        public int BookId { get; set; }
 
         public UpdateBookCommand(BookStoreDbContext dbContext)
         {
@@ -17,9 +19,9 @@ namespace WebApi.BookOperations.UpdateBook{
 
         public void Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x=>x.ID == BookId);
+            var book = _dbContext.Books.SingleOrDefault(x => x.ID == BookId);
 
-            if(book is null)
+            if (book is null)
                 throw new InvalidOperationException("Kitap mevcut değil.");
 
             book.Title = Model.Title != default ? Model.Title : book.Title;
@@ -32,12 +34,11 @@ namespace WebApi.BookOperations.UpdateBook{
 
         public class UpdateBookModel
         {
-            public string Title{get;set;}
-            public int GenreId{get;set;}
-            public int PageCount{get;set;}
-            public DateTime PublishDate{get;set;}
+            public string Title { get; set; }
+            public int GenreId { get; set; }
+            public int PageCount { get; set; }
+            public DateTime PublishDate { get; set; }
         }
 
     }
 }
-        

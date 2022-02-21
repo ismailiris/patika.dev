@@ -3,12 +3,13 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApi.DBOperations{
+namespace WebApi.DBOperations
+{
     public class DataGenerator
     {
-        public static void Initialize(IServiceProvider  serviceProvider)
+        public static void Initialize(IServiceProvider serviceProvider)
         {
-            using(var context  = new BookStoreDbContext(serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
+            using (var context = new BookStoreDbContext(serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
             {
                 if (context.Books.Any())
                 {
@@ -19,29 +20,29 @@ namespace WebApi.DBOperations{
                     new Book
                     {
                         //ID=1,
-                        Title="Lean Startup",
-                        GenreID=1, //Personal Growth
+                        Title = "Lean Startup",
+                        GenreID = 1, //Personal Growth
                         PageCount = 200,
-                        PublishDate = new DateTime(2001,06,12)
+                        PublishDate = new DateTime(2001, 06, 12)
                     },
                     new Book
                     {
                         //ID=2,
-                        Title="Herland",
-                        GenreID=2, //Science Fiction
+                        Title = "Herland",
+                        GenreID = 2, //Science Fiction
                         PageCount = 250,
-                        PublishDate = new DateTime(2010,05,23)
+                        PublishDate = new DateTime(2010, 05, 23)
                     },
                     new Book
                     {
                         //ID=3,       
-                        Title="Dune",
-                        GenreID=2, //Science Fiction
+                        Title = "Dune",
+                        GenreID = 2, //Science Fiction
                         PageCount = 200,
-                        PublishDate = new DateTime(2001,12,21)
+                        PublishDate = new DateTime(2001, 12, 21)
                     }
                 );
-                
+
                 context.SaveChanges();
             }
         }

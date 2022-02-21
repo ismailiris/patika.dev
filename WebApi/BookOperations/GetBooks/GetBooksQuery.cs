@@ -5,7 +5,8 @@ using WebApi.DBOperations;
 using WebApi.Common;
 using AutoMapper;
 
-namespace WebApi.BookOperations.GetBooks{
+namespace WebApi.BookOperations.GetBooks
+{
 
     public class GetBooksQuery
     {
@@ -20,7 +21,7 @@ namespace WebApi.BookOperations.GetBooks{
         public List<BooksViewModel> Handle()
         {
             var bookList = _dbContext.Books.OrderBy(x => x.ID).ToList<Book>();
-            
+
             List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList);
 
             /*List<BooksViewModel> vm = new List<BooksViewModel>();
@@ -34,16 +35,16 @@ namespace WebApi.BookOperations.GetBooks{
                 });
             }*/
 
-            return vm;   
+            return vm;
         }
     }
 
     public class BooksViewModel
     {
-        public string Title{ get; set;}
-        public int PageCount{ get; set;}
-        public String PublishDate { get; set;}
-        public string Genre{ get; set;}
+        public string Title { get; set; }
+        public int PageCount { get; set; }
+        public String PublishDate { get; set; }
+        public string Genre { get; set; }
     }
 
 }

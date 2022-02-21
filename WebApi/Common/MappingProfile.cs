@@ -9,9 +9,9 @@ namespace WebApi.Common
     {
         public MappingProfile()
         {
-            CreateMap<CreateBookModel,Book>();
-            CreateMap<Book,BookViewModel>().ForMember(dest => dest.Genre, opt =>opt.MapFrom(src=>((GenreEnum)src.GenreID).ToString()));
-            CreateMap<Book,BooksViewModel>().ForMember(dest => dest.Genre, opt =>opt.MapFrom(src=>((GenreEnum)src.GenreID).ToString()));
+            CreateMap<CreateBookModel, Book>();
+            CreateMap<Book, BookViewModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ((GenreEnum)src.GenreID).ToString()));
+            CreateMap<Book, BooksViewModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ((GenreEnum)src.GenreID).ToString()));
         }
     }
 }
