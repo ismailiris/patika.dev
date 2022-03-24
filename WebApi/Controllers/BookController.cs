@@ -5,17 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebApi.BookOperations.CreateBook;
-using WebApi.BookOperations.DeleteBook;
-using WebApi.BookOperations.GetBooks;
-using WebApi.BookOperations.GetById;
-using WebApi.BookOperations.UpdateBook;
+using WebApi.Application.BookOperations.Commands.CreateBook;
+using WebApi.Application.BookOperations.Commands.DeleteBook;
+using WebApi.Application.BookOperations.Queries.GetBooks;
+using WebApi.Application.BookOperations.Queries.GetById;
+using WebApi.Application.BookOperations.Commands.UpdateBook;
 using WebApi.DBOperations;
-using static WebApi.BookOperations.CreateBook.CreateBookCommand;
-using static WebApi.BookOperations.GetById.GetByIdQuery;
-using static WebApi.BookOperations.UpdateBook.UpdateBookCommand;
+using static WebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
+using static WebApi.Application.BookOperations.Queries.GetById.GetByIdQuery;
+using static WebApi.Application.BookOperations.Commands.UpdateBook.UpdateBookCommand;
 
-namespace WebApi.AddControllers
+namespace WebApi.Controllers
 {
 
     [ApiController]
@@ -69,8 +69,6 @@ namespace WebApi.AddControllers
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
             CreateBookCommand command = new CreateBookCommand(_context, _mapper);
-            // try
-            // {
             command.Model = newBook;
 
             //validation 
@@ -79,11 +77,6 @@ namespace WebApi.AddControllers
 
             command.Handle();
 
-            // }
-            // catch(Exception ex)
-            // {
-            //     return BadRequest(ex.Message);
-            // }
             return Ok();
 
         }

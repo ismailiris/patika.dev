@@ -25,7 +25,7 @@ namespace WebApi.MiddleWares
             var watch = Stopwatch.StartNew();
             try
             {
-                string message = "[Request] HTTP " + context.Request.Method + " - " + context.Request.Path;
+                string message = "[Request]  HTTP " + context.Request.Method + " - " + context.Request.Path;
                 _loggerService.Write(message);
                 await _next(context);
                 watch.Stop();
