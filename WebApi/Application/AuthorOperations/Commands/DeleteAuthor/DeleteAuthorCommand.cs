@@ -20,6 +20,9 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor
             if (author is null)
                 throw new InvalidOperationException("Yazar Mevcut Değil!");
 
+            if( _context.Books.Any(x=>x.AuthorID == authorId))
+                throw new InvalidOperationException("Yazarın kitabı mevcut olduğu için silinemez.");
+                
             _context.Authors.Remove(author);
             _context.SaveChanges();
         }

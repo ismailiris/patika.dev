@@ -24,18 +24,11 @@ namespace WebApi.Application.BookOperations.Queries.GetById
         public BookViewModel Handle()
         {
 
-            var book = _dbContext.Books.Include(x => x.Genre).Where(book => book.ID == BookId).SingleOrDefault();
+            var book = _dbContext.Books.Include(x=>x.Author).Include(x => x.Genre).Where(book => book.ID == BookId).SingleOrDefault();
             if (book is null)
                 throw new InvalidOperationException("Kitap mevcut değil");
 
             BookViewModel bvm = _mapper.Map<BookViewModel>(book);
-
-            /*BookViewModel bvm =  new BookViewModel(){
-                Title = book.Title,
-                Genre = ((GenreEnum)book.GenreID).ToString(),
-                PublishDate = book.PublishDate.ToString("dd/MM/yyyy"),
-                PageCount = book.PageCount
-            };*/
 
             return bvm;
         }
@@ -46,6 +39,7 @@ namespace WebApi.Application.BookOperations.Queries.GetById
             public int PageCount { get; set; }
             public String PublishDate { get; set; }
             public string Genre { get; set; }
+            public string AuthorName { get; set; }
         }
 
 
